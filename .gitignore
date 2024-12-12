@@ -1,12 +1,7 @@
-# Node modules
 node_modules/
-
-# Build output
 dist/
-
-# Logs
 logs
 *.log
-
-# Environment variables
 .env
+.vscode/
+.idea/
