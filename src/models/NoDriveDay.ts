@@ -1,4 +1,6 @@
 class NoDriveDay {
+  
+    // Restricted days with the last digits of the license plates that cannot circulate on those days
     private static restrictedDays: { [key: string]: number[] } = {
       "Monday": [1, 2],
       "Tuesday": [3, 4],
@@ -6,12 +8,14 @@ class NoDriveDay {
       "Thursday": [7, 8],
       "Friday": [9, 0],
     };
-  
+
+    // Restricted hours during which you cannot drive
     private static restrictedHours: [string, string][] = [
       ["06:00", "09:30"],
       ["16:00", "21:00"],
     ];
-  
+
+    // Check if the day of the week is restricted for a vehicle based on its license plate
     private static isRestrictedDay(plate: string, date: string): boolean {
       const dayOfWeek = new Date(date).toLocaleDateString('en-US', {
         weekday: 'long',
@@ -21,13 +25,15 @@ class NoDriveDay {
       return NoDriveDay.restrictedDays[dayOfWeek]?.includes(lastDigit) || false;
     }
   
+    // Check if the time is within the restricted hours
     private static isRestrictedHour(time: string): boolean {
       return NoDriveDay.restrictedHours.some(([start, end]) => {
         const isRestricted = time >= start && time <= end;
         return isRestricted;
       });
     }
-  
+
+    // Analyzes whether the vehicle can circulate, based on the license plate, date and time
     public static canDrive(plate: string, date: string, time: string): string {
       const restrictedDay = this.isRestrictedDay(plate, date);
       const restrictedHour = this.isRestrictedHour(time);

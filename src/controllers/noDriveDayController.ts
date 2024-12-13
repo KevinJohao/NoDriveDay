@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { NoDriveDay } from '../models/NoDriveDay';
 
-const router = express.Router(); // Asegúrate de que 'router' esté definido aquí
+const router = express.Router();
 
 router.get('/candrive', (req: Request, res: Response) => {
   const { plate, date, time } = req.query;
@@ -14,4 +14,4 @@ router.get('/candrive', (req: Request, res: Response) => {
   res.json({ result });
 });
 
-export { router }; // Exporta 'router' para que pueda ser utilizado en otros archivos
+export { router }; 
